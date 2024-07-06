@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Attack Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ url_for('static', filename='validate.js') }}"></script>
+  </head>
+  <body>
+    <div class="header" style="position: relative">
+      <img
+        src="{{ url_for('static', filename='heartIcon.png') }}"
+        alt="Heart icon"
+        width="50"
+        height="50"
+        style="position: absolute; top: 10px; left: 10px"
+      />
+      <h1 style="margin-left: -950px">HEART ATTACK PREDICTOR</h1>
+      <nav style="position: absolute; top: 20px; right: 10px">
+        <ul
+          style="
+            list-style-type: none;
+            margin-left: -400px;
+            padding: 0;
+            display: flex;
+            gap: 50px;
+            font-weight: bold;
+            color: white;
+          "
+        >
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+          <li>
+            <a href="{{ url_for('predictor') }}" style="color: white"
+              >Predictor</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('about') }}" style="color: white">About</a>
+          </li>
+          <!-- <li><a href="" style="color: white">Contact</a></li> -->
+          <li>
+            <a href="{{ url_for('login') }}">
+              <img
+                src="{{ url_for('static', filename='login.png') }}"
+                alt="Login icon"
+                width="20"
+                height="20"
+                style="vertical-align: middle; margin-right: 5px"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="login-container">
+      <!-- <img src="loginIcon.png" alt="Login Icon" /> -->
+      <h1>Login</h1>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="alert alert-danger" role="alert">
+        {% for message in messages %} {{ message }} {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+      <form action="{{ url_for('login') }}" method="POST">
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+      <a href="{{ url_for('register') }}">Create an Account</a>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2024 Heart Attack Predictor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

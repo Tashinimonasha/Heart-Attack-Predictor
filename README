@@ -1,0 +1,54 @@
+# Heart Attack Prediction System
+
+## Overview
+
+The Heart Attack Prediction System is a web application that predicts the risk of heart attacks based on user-provided health data. It utilizes machine learning models to analyze various factors and provide risk assessments.
+
+## Features
+
+- **Prediction**: Predicts the likelihood of a heart attack based on user input.
+- **Registration and Login**: Secure user authentication and registration system.
+- **User Management**: Manage user accounts with password hashing and validation.
+- **Interactive UI**: Intuitive interface for inputting data and viewing predictions.
+
+## Technologies Used
+
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
+- **Backend**: Python, Flask web framework
+- **Database**: MySQL
+- **Machine Learning**: Scikit-learn (Random Forest Classifier)
+- **Security**: Werkzeug for password hashing and validation
+
+## Setup Instructions
+
+1. **Clone the repository:**
+
+2. **Install dependencies:**
+
+3. **Database Setup:**
+
+- Install MySQL and create a database named `heart_attacker`.
+- Update `SQLALCHEMY_DATABASE_URI` in `app.py` with your MySQL credentials.
+
+4. **Run the application:**
+
+5. **Access the application:**
+   Open your web browser and go to `http://localhost:5000`
+
+## Usage
+
+- Navigate to the homepage (`/`) to get started.
+- Register a new account or log in if you already have one.
+- Fill in the predictor form (`/predictor`) to get predictions based on health data.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your improvements. Ensure your code follows the project's coding conventions.
+
+## License
+
+## This project is licensed under the MIT License - see the LICENSE file for details.
+
+**Done by:**
+Dineth Jayanga
+Date: July 6, 2024

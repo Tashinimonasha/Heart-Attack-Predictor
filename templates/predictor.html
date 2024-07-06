@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Attack Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ url_for('static', filename='validate.js') }}"></script>
+  </head>
+  <body>
+    <div class="header" style="position: relative">
+      <img
+        src="{{ url_for('static', filename='heartIcon.png') }}"
+        alt="Heart icon"
+        width="50"
+        height="50"
+        style="position: absolute; top: 10px; left: 10px"
+      />
+      <h1 style="margin-left: -950px">HEART ATTACK PREDICTOR</h1>
+      <nav style="position: absolute; top: 20px; right: 10px">
+        <ul
+          style="
+            list-style-type: none;
+            margin-left: -400px;
+            padding: 0;
+            display: flex;
+            gap: 50px;
+            font-weight: bold;
+            color: white;
+          "
+        >
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+          <li>
+            <a href="{{ url_for('predictor') }}" style="color: white"
+              >Predictor</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('about') }}" style="color: white">About</a>
+          </li>
+          <!-- <li><a href="#" style="color: white">Contact</a></li> -->
+          <li>
+            <a href="{{ url_for('logout') }}">
+              <img
+                src="{{ url_for('static', filename='shutdown.png') }}"
+                alt="Login icon"
+                width="20"
+                height="20"
+                style="vertical-align: middle; margin-right: 5px"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <form
+        id="predictionForm"
+        action="/predict"
+        method="post"
+        onsubmit="return validateForm()"
+      >
+        <div class="form-section">
+          <!-- Age and Sex section -->
+          <label for="age">Age:</label>
+          <input type="number" name="age" id="age" required />
+
+          <label>Sex:</label>
+          <div class="radio-group">
+            <input type="radio" name="sex" id="male" value="1" required />
+            <label for="male">Male</label>
+            <input type="radio" name="sex" id="female" value="0" />
+            <label for="female">Female</label>
+          </div>
+
+          <label>Chest Pain Type:</label><br /><br />
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="cp"
+              id="cp0"
+              value="0"
+            />
+            <label class="custom-control-label" for="cp0">Level 1</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="cp"
+              id="cp1"
+              value="1"
+            />
+            <label class="custom-control-label" for="cp1">Level 2</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="cp"
+              id="cp2"
+              value="2"
+            />
+            <label class="custom-control-label" for="cp2">Level 3</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="cp"
+              id="cp3"
+              value="3"
+            />
+            <label class="custom-control-label" for="cp3">Level 4</label>
+          </div>
+          <br />
+
+          <label>Fasting Blood Sugar > 120 mg/dl:</label><br /><br />
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="fbs"
+              id="fbs1"
+              value="1"
+            />
+            <label class="custom-control-label" for="fbs1">True</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="fbs"
+              id="fbs0"
+              value="0"
+            />
+            <label class="custom-control-label" for="fbs0">False</label>
+          </div>
+          <br />
+
+          <label for="trestbps">Resting Blood Pressure:</label>
+          <input type="number" name="trestbps" id="trestbps" required />
+
+          <label for="chol">Serum Cholesterol:</label>
+          <input type="number" name="chol" id="chol" required />
+        </div>
+        <div class="form-section">
+          <!-- Rest of the inputs section -->
+          <label>Resting Electrocardiographic Results:</label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              name="restecg"
+              id="restecg0"
+              value="0"
+              required
+            />
+            <label for="restecg0">0</label>
+            <input type="radio" name="restecg" id="restecg1" value="1" />
+            <label for="restecg1">1</label>
+            <input type="radio" name="restecg" id="restecg2" value="2" />
+            <label for="restecg2">2</label>
+          </div>
+
+          <label for="thalach">Maximum Heart Rate Achieved:</label>
+          <input type="number" name="thalach" id="thalach" required />
+
+          <label>Exercise Induced Angina:</label>
+          <div class="radio-group">
+            <input type="radio" name="exang" id="exang1" value="1" required />
+            <label for="exang1">Yes</label>
+            <input type="radio" name="exang" id="exang0" value="0" />
+            <label for="exang0">No</label>
+          </div>
+
+          <label for="oldpeak"
+            >ST Depression Induced by Exercise Relative to Rest:</label
+          >
+          <input type="number" name="oldpeak" id="oldpeak" required />
+
+          <!-- Slope of the Peak Exercise ST Segment -->
+          <label>Slope of the Peak Exercise ST Segment:</label>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="slope"
+              id="slope0"
+              value="0"
+              required
+            />
+            <label class="custom-control-label" for="slope0">0</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="slope"
+              id="slope1"
+              value="1"
+            />
+            <label class="custom-control-label" for="slope1">1</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="slope"
+              id="slope2"
+              value="2"
+            />
+            <label class="custom-control-label" for="slope2">2</label>
+          </div>
+
+          <!-- Number of Major Vessels -->
+          <label>Number of Major Vessels:</label>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="ca"
+              id="ca0"
+              value="0"
+              required
+            />
+            <label class="custom-control-label" for="ca0">0</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="ca"
+              id="ca1"
+              value="1"
+            />
+            <label class="custom-control-label" for="ca1">1</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="ca"
+              id="ca2"
+              value="2"
+            />
+            <label class="custom-control-label" for="ca2">2</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="ca"
+              id="ca3"
+              value="3"
+            />
+            <label class="custom-control-label" for="ca3">3</label>
+          </div>
+
+          <!-- Thal -->
+          <label
+            >Thal (3 = normal; 6 = fixed defect; 7 = reversible defect):</label
+          >
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="thal"
+              id="thal3"
+              value="3"
+              required
+            />
+            <label class="custom-control-label" for="thal3">3</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="thal"
+              id="thal6"
+              value="6"
+            />
+            <label class="custom-control-label" for="thal6">6</label>
+          </div>
+          <div class="custom-control custom-switch">
+            <input
+              type="radio"
+              class="custom-control-input"
+              name="thal"
+              id="thal7"
+              value="7"
+            />
+            <label class="custom-control-label" for="thal7">7</label>
+          </div>
+        </div>
+        <input
+          type="submit"
+          value="Predict"
+          class="btn btn-primary"
+          style="margin-left: 250px; background-color: black"
+        />
+      </form>
+    </div>
+    <br /><br />
+    <div class="footer">
+      <p>&copy; 2024 Heart Attack Predictor. All rights reserved.</p>
+    </div>
+  </body>
+</html>
