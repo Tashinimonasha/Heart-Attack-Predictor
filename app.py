@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'jfhfvhkrjdsls12k4jfhrhkgh43kfh2221'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:Dineth2021#@localhost/heart_attacker'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://tashini:1234@localhost/ml_heart_attack_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
