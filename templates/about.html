@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Attack Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ url_for('static', filename='validate.js') }}"></script>
+  </head>
+  <body>
+    <div class="header" style="position: relative">
+      <img
+        src="{{ url_for('static', filename='heartIcon.png') }}"
+        alt="Heart icon"
+        width="50"
+        height="50"
+        style="position: absolute; top: 10px; left: 10px"
+      />
+      <h1 style="margin-left: -950px">HEART ATTACK PREDICTOR</h1>
+      <nav style="position: absolute; top: 20px; right: 10px">
+        <ul
+          style="
+            list-style-type: none;
+            margin-left: -400px;
+            padding: 0;
+            display: flex;
+            gap: 50px;
+            font-weight: bold;
+            color: white;
+          "
+        >
+          <li><a href="{{ url_for('home') }}" style="color: white">Home</a></li>
+          <li>
+            <a href="{{ url_for('predictor') }}" style="color: white"
+              >Predictor</a
+            >
+          </li>
+          <li><a href="{{ url_for('about') }}" style="color: white">About</a></li>
+
+          <!-- <li><a href="" style="color: white">Contact</a></li> -->
+          <li>
+            <a href="{{ url_for('login') }}">
+              <img
+                src="{{ url_for('static', filename='login.png') }}"
+                alt="Login icon"
+                width="20"
+                height="20"
+                style="vertical-align: middle; margin-right: 5px"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="content">
+        <div class="about-section">
+            <h2>HEART ATTACK PREDICTOR</h2>
+            <p style="font-weight: bold;">Welcome to the Heart Attack Prediction System, designed to help you assess your risk of heart attack using advanced predictive models.</p>
+
+            <h3>Our Mission</h3>
+            <p>Our mission is to provide accessible and accurate heart attack risk assessment tools to empower individuals in managing their cardiovascular health effectively.</p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Predictive Models:</strong> Utilizes machine learning algorithms for accurate risk assessment.</li>
+                <li><strong>Personalized Insights:</strong> Offers personalized health recommendations based on individual health data.</li>
+                <li><strong>User-Friendly Interface:</strong> Easy-to-use platform for seamless user experience.</li>
+            </ul>
+
+            <h3>Benefits to Users</h3>
+            <ul>
+                <li>Early detection and prevention of heart conditions.</li>
+                <li>Personalized recommendations for lifestyle modifications.</li>
+                <li>Insights into cardiovascular health based on the latest medical research.</li>
+            </ul>
+            <h3>Meet the Team</h3>
+            <p>Our dedicated team of healthcare professionals and data scientists are committed to advancing cardiovascular health through innovative technology solutions.</p>
+
+            <h3>Privacy and Security</h3>
+            <p>We prioritize user privacy and data security. All user information is protected with industry-standard encryption protocols.</p>
+
+            <h3>Get Started</h3>
+            <p>Ready to assess your heart health? <a href="{{ url_for('predictor') }}">Explore the Predictor Tool</a> or <a href="{{ url_for('register') }}">Register</a> for personalized insights.</p>
+
+            <h3>Contact Us</h3>
+            <p>Have questions or feedback? Reach out to us at <a href="mailto:contact@example.com">contact@example.com.</a></p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Heart Attack Predictor. All rights reserved.</p>
+          </div>
+  </body>
+</html>
